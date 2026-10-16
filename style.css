@@ -1,0 +1,882 @@
+
+/* ==========================================
+   SURYA ❤️ SNEHA — FINAL CSS
+   ========================================== */
+
+:root {
+    --pink: #ff4d9d;
+    --light-pink: #ffd3e7;
+    --wine: #350020;
+    --gold: #ffe4a3;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    width: 100%;
+    overflow-x: clip;
+    scroll-behavior: smooth;
+    background: #210015;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: clip;
+    color: #fff;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(150deg, #280019, #4b002e, #210015);
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+/* ==========================================
+   FLOATING HEART BACKGROUND
+   ========================================== */
+
+#heartBackground {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.bg-love {
+    position: absolute;
+    bottom: -50px;
+    opacity: 0;
+    animation: heartRise linear infinite;
+    filter: drop-shadow(0 0 6px rgba(255, 80, 160, 0.5));
+    will-change: transform;
+}
+
+@keyframes heartRise {
+    0% {
+        opacity: 0;
+        transform: translateY(0) rotate(0deg);
+    }
+
+    15% {
+        opacity: 0.75;
+    }
+
+    80% {
+        opacity: 0.65;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-115vh) rotate(35deg);
+    }
+}
+
+/* ==========================================
+   LOADING SCREEN
+   ========================================== */
+
+#loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    background: radial-gradient(circle, #65003d, #210015);
+}
+
+.loader-content {
+    width: min(100%, 420px);
+}
+
+.loader-heart {
+    margin-bottom: 18px;
+    font-size: 65px;
+    animation: heartbeat 1.2s infinite;
+}
+
+.loader-content h1 {
+    margin-bottom: 12px;
+    font-size: clamp(24px, 5vw, 36px);
+}
+
+.loader-content p {
+    margin: 12px 0;
+    color: #ffe6f1;
+    line-height: 1.7;
+}
+
+.progress-container {
+    height: 12px;
+    margin-top: 22px;
+    overflow: hidden;
+    border: 1px solid #ffc0dc;
+    border-radius: 20px;
+    background: #200014;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #ff368e, #ffe3ef, #ff5ca8);
+    transition: width 0.15s linear;
+}
+
+/* ==========================================
+   PAGES
+   ========================================== */
+
+.page {
+    position: relative;
+    z-index: 1;
+    display: none;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.page.active {
+    display: flex;
+    animation: pageAppear 0.45s ease both;
+}
+
+@keyframes pageAppear {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+/* ==========================================
+   BUTTONS
+   ========================================== */
+
+.love-button {
+    position: relative;
+    z-index: 5;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 12px 24px;
+    border: 1px solid #ffc3df;
+    border-radius: 50px;
+    color: #fff;
+    background: linear-gradient(135deg, #ff368e, #bd155f);
+    box-shadow: 0 5px 20px rgba(255, 46, 138, 0.28);
+    font-weight: 750;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.love-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 46, 138, 0.45);
+}
+
+/* ==========================================
+   OPENING PAGE
+   FULL SCREEN, NO SCROLLBAR
+   ========================================== */
+
+.opening-page {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    min-height: 500px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden !important;
+    background: #260018;
+}
+
+/* Moving photo wall fills the screen */
+
+.photo-wall {
+    position: absolute;
+    inset: -8%;
+    z-index: -2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    max-width: none;
+    overflow: hidden !important;
+    transform: rotate(-3deg) scale(1.08);
+    opacity: 0.9;
+    pointer-events: none;
+}
+
+.photo-ribbon {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: row;
+    width: max-content;
+    max-width: none;
+    gap: 12px;
+    animation: ribbonMove 55s linear infinite;
+    will-change: transform;
+}
+
+.photo-ribbon img {
+    flex: 0 0 125px;
+    width: 125px;
+    height: 88px;
+    object-fit: cover;
+    border: 2px solid #ffadd2;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(255, 75, 155, 0.45);
+}
+
+@keyframes ribbonMove {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* Transparent panel: photos remain clearly visible */
+
+.opening-overlay {
+    position: relative;
+    z-index: 2;
+    width: min(90%, 760px);
+    max-height: 92svh;
+    margin: auto;
+    padding: clamp(22px, 4vw, 40px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-align: center;
+    border: 1px solid rgba(255, 190, 220, 0.6);
+    border-radius: 25px;
+
+    /* Less purple opacity than before */
+    background: rgba(24, 0, 15, 0.28);
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(0.5px);
+    -webkit-backdrop-filter: blur(0.5px);
+}
+
+.opening-hearts {
+    margin-bottom: 12px;
+    font-size: 29px;
+    animation: heartbeat 2s infinite;
+}
+
+.small-heading {
+    margin-bottom: 12px;
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    line-height: 1.8;
+    text-shadow: 0 2px 5px #210015;
+}
+
+.opening-overlay h1 {
+    color: #fff;
+    font-size: clamp(34px, 6vw, 62px);
+    line-height: 1.2;
+    text-shadow: 0 2px 8px #210015, 0 0 14px #9e004d;
+}
+
+.opening-overlay h2 {
+    margin: 10px 0;
+    color: #ffd6e8;
+    font-size: clamp(29px, 5vw, 48px);
+    text-shadow: 0 2px 8px #210015;
+}
+
+.opening-message {
+    margin: 17px auto 12px;
+    color: #fff;
+    font-size: clamp(15px, 2.5vw, 18px);
+    font-weight: 650;
+    line-height: 1.8;
+    text-shadow: 0 2px 5px #210015;
+}
+
+.anniversary-date {
+    margin: 13px 0;
+    color: var(--gold);
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 5px #210015;
+}
+
+.year-message {
+    margin-bottom: 22px;
+    color: #fff;
+    font-weight: 600;
+    line-height: 1.8;
+    text-shadow: 0 2px 5px #210015;
+}
+
+/* ==========================================
+   MEMORIES PAGE
+   SMALLER IMAGES, COMPACT CARDS
+   ========================================== */
+
+.memories-page {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 28px 15px 50px;
+    overflow: clip;
+    background:
+        radial-gradient(ellipse at top, #50002e, transparent 60%),
+        linear-gradient(180deg, #2c001c, #190010 75%, #30001e);
+}
+
+.memories-page.active {
+    display: flex;
+}
+
+.section-header {
+    width: min(100%, 780px);
+    margin: 0 auto 30px;
+    text-align: center;
+}
+
+.section-header h1 {
+    margin-bottom: 16px;
+    color: #fff;
+    font-size: clamp(30px, 5vw, 49px);
+    line-height: 1.25;
+    text-shadow: 0 2px 8px #16000e, 0 0 15px #e52e84;
+}
+
+.section-header > p:not(.small-heading) {
+    max-width: 660px;
+    margin: 0 auto;
+    color: #fff0f7;
+    font-size: clamp(15px, 2.5vw, 18px);
+    line-height: 1.8;
+}
+
+.memory-decoration {
+    margin-top: 18px;
+    color: #ffc0df;
+    font-size: 22px;
+    letter-spacing: 5px;
+    animation: heartbeat 2s infinite;
+}
+
+/* Vertical single-column gallery */
+
+#memoryGallery,
+.memory-gallery {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center;
+    gap: 32px;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+/* Smaller cards with less wasted space */
+
+.memory-card {
+    position: relative;
+    isolation: isolate;
+    width: min(100%, 390px);
+    margin: 0 auto;
+    padding: 9px;
+    border: 2px solid #ff9ecb;
+    border-radius: 17px;
+    background: rgba(35, 0, 22, 0.93);
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.3),
+        0 0 12px rgba(255, 65, 145, 0.2);
+    text-align: center;
+}
+
+/* Animated love-emoji border */
+
+.memory-card::before {
+    content: "💖 ";
+    position: absolute;
+    z-index: 3;
+    top: -13px;
+    left: 50%;
+    width: max-content;
+    max-width: 96%;
+    padding: 4px 8px;
+    border: 1px solid #ffadd1;
+    border-radius: 50px;
+    color: #fff;
+    background: #410025;
+    font-size: clamp(10px, 2vw, 14px);
+    letter-spacing: 1px;
+    white-space: nowrap;
+    transform: translateX(-50%);
+    box-shadow: 0 0 12px rgba(255, 68, 151, 0.5);
+    animation: loveGlow 2.3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.memory-card::after {
+    content: " ❤️";
+    display: block;
+    margin: 8px auto 0;
+    font-size: 17px;
+    letter-spacing: 3px;
+    animation: loveGlow 2.3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes loveGlow {
+    0%, 100% {
+        filter: brightness(0.9);
+        text-shadow: 0 0 3px #ff5fa2;
+    }
+
+    50% {
+        filter: brightness(1.35);
+        text-shadow: 0 0 12px #ff5fa2;
+    }
+}
+
+/* Image dimensions deliberately limited */
+
+.memory-card img {
+    width: 100%;
+    height: auto;
+    max-height: 260px;
+    object-fit: contain;
+    border: 2px solid #ffd2e5;
+    border-radius: 10px;
+    background: #17000f;
+}
+
+/* Caption is part of the same reveal card */
+
+.memory-caption {
+    margin: 10px 5px 3px;
+    color: #fff;
+    font-size: clamp(14px, 2.5vw, 17px);
+    font-weight: 500;
+    line-height: 1.7;
+    text-shadow: 0 1px 3px #16000e;
+}
+
+/* Hidden until the card enters the viewport */
+
+.memory-card.reveal-ready {
+    opacity: 0;
+    transform: translateY(35px) scale(0.97);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.memory-card.reveal-ready.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.memories-ending {
+    width: min(100%, 700px);
+    margin: 38px auto 0;
+    text-align: center;
+}
+
+.memories-ending p {
+    margin-bottom: 20px;
+    color: #fff0f7;
+    font-size: clamp(16px, 3vw, 22px);
+    line-height: 1.8;
+}
+
+/* ==========================================
+   QUESTION PAGE
+   ========================================== */
+
+.question-page {
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: radial-gradient(circle, #710043, #350021 65%, #1a0011);
+}
+
+.question-card {
+    width: min(100%, 620px);
+    padding: clamp(25px, 6vw, 50px);
+    border: 1px solid #ffb6d8;
+    border-radius: 25px;
+    background: rgba(31, 0, 20, 0.85);
+    text-align: center;
+}
+
+.question-hearts {
+    margin-bottom: 18px;
+    font-size: 30px;
+    animation: heartbeat 1.5s infinite;
+}
+
+.question-card h1 {
+    margin-bottom: 22px;
+    font-size: clamp(28px, 5vw, 43px);
+}
+
+.question-text {
+    margin-bottom: 28px;
+    color: #fff0f7;
+    font-size: clamp(18px, 3vw, 24px);
+    line-height: 1.8;
+}
+
+.answer-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+}
+
+.yes-button,
+.no-button {
+    min-width: 120px;
+}
+
+.no-button {
+    background: linear-gradient(135deg, #8a315e, #49203d);
+}
+
+.no-message {
+    min-height: 38px;
+    margin-top: 24px;
+    color: #ffd4e7;
+    font-size: clamp(17px, 3vw, 23px);
+    font-weight: 800;
+    line-height: 1.6;
+}
+
+/* ==========================================
+   LOVE LETTER PAGE
+   ========================================== */
+
+.letter-page {
+    align-items: center;
+    justify-content: center;
+    padding: 30px 16px;
+    background: radial-gradient(ellipse at top, #6a003f, #210015 75%);
+}
+
+.letter-card {
+    width: min(100%, 800px);
+    padding: clamp(20px, 5vw, 42px);
+    border: 1px solid #ffb6d8;
+    border-radius: 25px;
+    background: rgba(35, 0, 23, 0.9);
+    text-align: center;
+}
+
+.letter-decoration {
+    margin-bottom: 18px;
+    font-size: 30px;
+    animation: heartbeat 2s infinite;
+}
+
+.letter-card h1 {
+    margin-bottom: 14px;
+    font-size: clamp(30px, 5vw, 48px);
+}
+
+.letter-subtitle {
+    margin-bottom: 24px;
+    color: #ffe0ef;
+    line-height: 1.8;
+}
+
+.letter-paper {
+    margin-bottom: 26px;
+    padding: clamp(18px, 5vw, 36px);
+    border: 1px solid #ffb6d8;
+    border-radius: 15px;
+    background: #fff0f7;
+    text-align: left;
+}
+
+#loveLetter {
+    min-height: 150px;
+    color: #4d1034;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(16px, 2.5vw, 19px);
+    line-height: 1.9;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+/* ==========================================
+   GRAND FINALE
+   ========================================== */
+
+.finale-page {
+    min-height: 100svh;
+    align-items: center;
+    justify-content: center;
+    isolation: isolate;
+    padding: 30px 16px;
+    background: radial-gradient(circle, #61003b, #260018 75%);
+}
+
+#fireworksCanvas {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.finale-content {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 820px);
+    padding: clamp(24px, 6vw, 50px);
+    border: 1px solid #ffb6d8;
+    border-radius: 27px;
+    background: rgba(27, 0, 18, 0.78);
+    text-align: center;
+}
+
+.finale-hearts {
+    margin-bottom: 22px;
+    font-size: 30px;
+    animation: heartbeat 1.5s infinite;
+}
+
+.finale-content h1 {
+    margin-bottom: 15px;
+    font-size: clamp(36px, 7vw, 68px);
+    line-height: 1.2;
+    text-shadow: 0 2px 10px #000, 0 0 25px #ff3d91;
+}
+
+.finale-content h2 {
+    margin-bottom: 23px;
+    color: #ffd4e7;
+    font-size: clamp(26px, 5vw, 44px);
+}
+
+.finale-message {
+    max-width: 650px;
+    margin: 0 auto 20px;
+    color: #fff;
+    font-size: clamp(16px, 2.7vw, 21px);
+    line-height: 1.9;
+}
+
+.finale-signature {
+    margin-bottom: 26px;
+    color: #ffe6a8;
+    font-size: clamp(16px, 2.5vw, 20px);
+    line-height: 1.8;
+}
+
+.finale-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+/* Floating hearts generated by JavaScript */
+
+.floating-heart {
+    position: fixed;
+    z-index: 100;
+    bottom: -40px;
+    color: #ff9ac9;
+    opacity: 0;
+    pointer-events: none;
+    text-shadow: 0 0 12px #ff4d9a;
+    animation: floatHeart 6s linear forwards;
+}
+
+@keyframes floatHeart {
+    0% {
+        opacity: 0;
+        transform: translateY(0);
+    }
+
+    15% {
+        opacity: 0.9;
+    }
+
+    85% {
+        opacity: 0.75;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-115vh) rotate(35deg);
+    }
+}
+
+/* ==========================================
+   MOBILE RESPONSIVENESS
+   ========================================== */
+
+@media (max-width: 480px) {
+    .opening-page {
+        height: 100svh;
+        min-height: 500px;
+    }
+
+    .photo-wall {
+        opacity: 0.92;
+        gap: 8px;
+    }
+
+    .photo-ribbon {
+        gap: 8px;
+    }
+
+    .photo-ribbon img {
+        flex-basis: 95px;
+        width: 95px;
+        height: 68px;
+        border-radius: 8px;
+    }
+
+    .opening-overlay {
+        width: 94%;
+        max-height: 92svh;
+        padding: 22px 14px;
+        border-radius: 19px;
+    }
+
+    .opening-hearts {
+        font-size: 24px;
+    }
+
+    .opening-message,
+    .year-message {
+        font-size: 14px;
+    }
+
+    .anniversary-date {
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+
+    .love-button {
+        padding: 12px 18px;
+        font-size: 14px;
+    }
+
+    .memories-page {
+        padding: 25px 12px 35px;
+    }
+
+    #memoryGallery,
+    .memory-gallery {
+        gap: 30px;
+    }
+
+    .memory-card {
+        width: min(100%, 320px);
+        padding: 8px;
+        border-radius: 14px;
+    }
+
+    .memory-card::before {
+        top: -12px;
+        padding: 4px 7px;
+        font-size: 10px;
+        letter-spacing: 0;
+    }
+
+    .memory-card::after {
+        font-size: 15px;
+        letter-spacing: 2px;
+    }
+
+    .memory-card img {
+        max-height: 220px;
+        border-radius: 8px;
+    }
+
+    .memory-caption {
+        font-size: 14px;
+    }
+
+    .answer-buttons {
+        gap: 10px;
+    }
+
+    .answer-buttons .love-button {
+        flex: 1 1 110px;
+        min-width: 0;
+    }
+
+    .letter-paper {
+        padding: 16px;
+    }
+
+    #loveLetter {
+        font-size: 15px;
+    }
+
+    .finale-buttons {
+        flex-direction: column;
+    }
+
+    .finale-buttons .love-button {
+        width: 100%;
+    }
+}
+
+/* ==========================================
+   ACCESSIBILITY
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
